@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="25aa66fc-3f0d-4c89-8450-98148dcab8e4" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/lib/template.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/template/base.html" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/template/child.html" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/lib/parse.py" afterPath="$PROJECT_DIR$/lib/parse.py" />
-      <change beforePath="$PROJECT_DIR$/test/lib/test_parse.py" afterPath="$PROJECT_DIR$/test/lib/test_parse.py" />
-    </list>
+    <list default="true" id="25aa66fc-3f0d-4c89-8450-98148dcab8e4" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
