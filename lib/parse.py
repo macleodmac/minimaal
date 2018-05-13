@@ -1,8 +1,13 @@
 import markdown2
 import re
 
+""" Expects:
+meta_1: value
+meta_2: value
 
-META_PATTERN = re.compile(r'(?:\s*\n)*((?:\w+:.*\n)+)(?:\s*\n)+.*', re.U)
+This is the *body* text
+"""
+META_PATTERN = re.compile(r'((?:\w+:.*\n)+)+', re.U)
 META_DELIMITER = ':'
 
 MARKDOWN2_EXTRAS = {
@@ -13,29 +18,29 @@ MARKDOWN2_EXTRAS = {
 }
 
 
-def parse_to_markdown(text, extras=MARKDOWN2_EXTRAS):
+def markdown_to_html(text, extras=MARKDOWN2_EXTRAS):
     return markdown2.markdown(text, extras=extras)
 
 
 def read_and_split(file_path):
     contents = read_file_from_path(file_path)
-    return split_markdown(contents)
+    meta_text, body_text = split_markdown(contents)
+    meta_dict = parse_metadata(meta_text)
+    return meta_dict, body_text
 
 
 def split_markdown(text, meta_pattern=META_PATTERN):
-    metadata = {}
     matched = meta_pattern.match(text)
     if not matched:
-        return metadata, text
-
-    meta_items = matched.group(1).splitlines()
-    metadata = parse_metadata(meta_items)
-    body = text[matched.end():]
-    return metadata, body
+        return '', text
+    meta_block = matched.group(1)
+    body = text[matched.end():].lstrip()
+    return meta_block, body
 
 
-def parse_metadata(items, meta_delimiter=META_DELIMITER):
+def parse_metadata(meta_text, meta_delimiter=META_DELIMITER):
     metadata = {}
+    items = meta_text.splitlines()
     for item in items:
         key, val = item.split(meta_delimiter, 1)
         val = val.strip()
@@ -50,9 +55,11 @@ def read_file_from_path(file_path):
     return contents
 
 
-#
-# md, bd = read_and_split('/home/jamie/Desktop/Projects/Letterpress/press/sample_post.md')
-# parsed = parse_to_markdown(bd)
-# print(parsed)
-# with open('/home/jamie/Desktop/test.html', 'w') as f:
-#     f.writelines(parsed)
+def write_html_to_file(file_path, contents):
+    with open(file_path, 'w', encoding='utf-8') as f:
+        f.writelines(contents)
+
+
+
+
+

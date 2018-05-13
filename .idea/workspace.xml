@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="25aa66fc-3f0d-4c89-8450-98148dcab8e4" name="Default" comment="" />
+    <list default="true" id="25aa66fc-3f0d-4c89-8450-98148dcab8e4" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/lib/template.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/template/base.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/template/child.html" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/lib/parse.py" afterPath="$PROJECT_DIR$/lib/parse.py" />
+      <change beforePath="$PROJECT_DIR$/test/lib/test_parse.py" afterPath="$PROJECT_DIR$/test/lib/test_parse.py" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,22 +21,10 @@
       <file leaf-file-name="parse.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/parse.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="218">
-              <caret line="32" column="31" lean-forward="true" selection-start-line="32" selection-start-column="31" selection-end-line="32" selection-end-column="31" />
+            <state relative-caret-position="360">
+              <caret line="56" column="0" lean-forward="true" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
               <folding>
                 <element signature="e#0#16#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test_parse.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/lib/test_parse.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="40" lean-forward="true" selection-start-line="8" selection-start-column="40" selection-end-line="8" selection-end-column="40" />
-              <folding>
-                <element signature="e#0#29#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -40,6 +35,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="HTML File" />
         <option value="Python Script" />
       </list>
     </option>
@@ -51,8 +47,12 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/parse_markdown.py" />
-        <option value="$PROJECT_DIR$/lib/parse.py" />
         <option value="$PROJECT_DIR$/test/lib/test_parse.py" />
+        <option value="$PROJECT_DIR$/template/child.html" />
+        <option value="$PROJECT_DIR$/lib/template.py" />
+        <option value="$PROJECT_DIR$/output.html" />
+        <option value="$PROJECT_DIR$/template/base.html" />
+        <option value="$PROJECT_DIR$/lib/parse.py" />
       </list>
     </option>
   </component>
@@ -90,13 +90,12 @@
             <path>
               <item name="minimaal" type="b2602c69:ProjectViewProjectNode" />
               <item name="minimaal" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="minimaal" type="b2602c69:ProjectViewProjectNode" />
               <item name="minimaal" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="template" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -106,6 +105,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$/test/lib" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -119,7 +119,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.Unittests in test_parse.py">
+  <component name="RunManager" selected="Python.template">
     <configuration name="parse" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -156,6 +156,24 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
+    <configuration name="template" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/lib" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="minimaal" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/lib/template.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
     <configuration name="Unittests in test_parse.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -170,16 +188,18 @@
       <option name="_new_target" value="&quot;$PROJECT_DIR$/test/lib/test_parse.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
     </configuration>
-    <list size="3">
+    <list size="4">
       <item index="0" class="java.lang.String" itemvalue="Python.parse_markdown" />
       <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in test_parse.py" />
       <item index="2" class="java.lang.String" itemvalue="Python.parse" />
+      <item index="3" class="java.lang.String" itemvalue="Python.template" />
     </list>
     <recent_temporary>
-      <list size="3">
-        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in test_parse.py" />
+      <list size="4">
+        <item index="0" class="java.lang.String" itemvalue="Python.template" />
         <item index="1" class="java.lang.String" itemvalue="Python.parse" />
-        <item index="2" class="java.lang.String" itemvalue="Python.parse_markdown" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in test_parse.py" />
+        <item index="3" class="java.lang.String" itemvalue="Python.parse_markdown" />
       </list>
     </recent_temporary>
   </component>
@@ -200,34 +220,34 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittests_in_test_parse_py - 2018.05.13 at 20h 19m 44s.xml">
+    <history-entry file="Unittests_in_test_parse_py - 2018.05.13 at 22h 58m 54s.xml">
       <configuration name="Unittests in test_parse.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_parse_py - 2018.05.13 at 20h 20m 23s.xml">
+    <history-entry file="Unittests_in_test_parse_py - 2018.05.13 at 23h 02m 12s.xml">
       <configuration name="Unittests in test_parse.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_parse_py - 2018.05.13 at 20h 20m 36s.xml">
+    <history-entry file="Unittests_in_test_parse_py - 2018.05.13 at 23h 03m 35s.xml">
       <configuration name="Unittests in test_parse.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_parse_py - 2018.05.13 at 20h 21m 01s.xml">
+    <history-entry file="Unittests_in_test_parse_py - 2018.05.13 at 23h 08m 49s.xml">
       <configuration name="Unittests in test_parse.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_parse_py - 2018.05.13 at 20h 21m 39s.xml">
+    <history-entry file="Unittests_in_test_parse_py - 2018.05.13 at 23h 22m 57s.xml">
       <configuration name="Unittests in test_parse.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_parse_py - 2018.05.13 at 20h 31m 18s.xml">
+    <history-entry file="Unittests_in_test_parse_py - 2018.05.13 at 23h 22m 59s.xml">
       <configuration name="Unittests in test_parse.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_parse_py - 2018.05.13 at 20h 35m 03s.xml">
+    <history-entry file="Unittests_in_test_parse_py - 2018.05.13 at 23h 23m 00s.xml">
       <configuration name="Unittests in test_parse.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_parse_py - 2018.05.13 at 20h 38m 20s.xml">
+    <history-entry file="Unittests_in_test_parse_py - 2018.05.13 at 23h 23m 27s.xml">
       <configuration name="Unittests in test_parse.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_parse_py - 2018.05.13 at 20h 38m 54s.xml">
+    <history-entry file="Unittests_in_test_parse_py - 2018.05.13 at 23h 23m 28s.xml">
       <configuration name="Unittests in test_parse.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_parse_py - 2018.05.13 at 20h 39m 22s.xml">
+    <history-entry file="Unittests_in_test_parse_py - 2018.05.13 at 23h 23m 31s.xml">
       <configuration name="Unittests in test_parse.py" configurationId="tests" />
     </history-entry>
   </component>
@@ -240,12 +260,12 @@
       <window_info id="R Packages" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="R Graphics" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32885906" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32885906" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25067025" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24966443" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297587" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32885906" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -263,17 +283,12 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/test/lib/test_parse.py</url>
-          <line>31</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/lib/parse.py</url>
-          <line>27</line>
-          <option name="timeStamp" value="4" />
+          <line>37</line>
+          <option name="timeStamp" value="11" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="5" />
+      <option name="time" value="12" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -286,20 +301,54 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/template/child.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="28" lean-forward="false" selection-start-line="1" selection-start-column="28" selection-end-line="1" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/test/lib/test_parse.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="40" lean-forward="true" selection-start-line="8" selection-start-column="40" selection-end-line="8" selection-end-column="40" />
+        <state relative-caret-position="285">
+          <caret line="19" column="28" lean-forward="false" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/output.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="4" lean-forward="true" selection-start-line="6" selection-start-column="4" selection-end-line="8" selection-end-column="101" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/template/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="101" lean-forward="false" selection-start-line="8" selection-start-column="101" selection-end-line="8" selection-end-column="101" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/template.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="22" lean-forward="false" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/lib/parse.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="32" column="31" lean-forward="true" selection-start-line="32" selection-start-column="31" selection-end-line="32" selection-end-column="31" />
+        <state relative-caret-position="360">
+          <caret line="56" column="0" lean-forward="true" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
           <folding>
             <element signature="e#0#16#0" expanded="true" />
           </folding>
