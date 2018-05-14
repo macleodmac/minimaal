@@ -48,13 +48,13 @@ def parse_metadata(meta_text, meta_delimiter=META_DELIMITER):
             metadata[key.strip()] = val
     return metadata
 
-
+# TODO: Refactor to use file handles
 def read_file_from_path(file_path):
     with open(file_path, encoding='utf-8') as f:
         contents = f.read()
     return contents
 
-
+# TODO: Refactor to use file handles
 def write_html_to_file(file_path, contents):
     with open(file_path, 'w', encoding='utf-8') as f:
         f.writelines(contents)

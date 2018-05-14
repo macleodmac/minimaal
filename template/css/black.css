@@ -1,0 +1,124 @@
+/* Include this stylesheet after Milligram or merge it with your main.css */
+
+a {
+    color: #111111;
+}
+
+body {
+    font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+}
+
+.container {
+    max-width: 90.0rem;
+}
+
+.button, button, input[type='button'], input[type='reset'], input[type='submit'] {
+    background-color: #111111;
+    border: .1rem solid #111111;
+}
+
+.button.button-outline, button.button-outline, input[type='button'].button-outline, input[type='reset'].button-outline, input[type='submit'].button-outline {
+    color: #111111;
+}
+
+.button.button-clear, button.button-clear, input[type='button'].button-clear, input[type='reset'].button-clear, input[type='submit'].button-clear {
+    color: #111111;
+}
+
+pre.prettyprint .lit {
+    color: #111111;
+}
+
+.share-icon {
+    background-color: #111111;
+    color: #ffffff;
+}
+
+pre {
+    background: #f4f5f6;
+    border-left: .3rem solid #111111;
+}
+
+pre.prettyprint {
+    border-left: .3rem solid #111111 !important;
+    color: #655d5d;
+}
+
+pre.prettyprint .tag {
+    color: #111111;
+}
+
+pre.prettyprint .atn {
+    color: #0065ce;
+}
+
+input[type='email']:focus, input[type='number']:focus, input[type='password']:focus, input[type='search']:focus, input[type='tel']:focus, input[type='text']:focus, input[type='url']:focus, textarea:focus, select:focus {
+    border: .1rem solid #111111;
+}
+
+.github-corner {
+    color: #f4f5f6;
+    fill: #111111;
+}
+
+code .code-c { color: rgba(0, 131, 18, 1) }
+code .code-err {}
+code .code-k { color: rgba(170, 13, 145, 1) }
+code .code-o { color: #000 }
+code .code-cm { color: rgba(0, 116, 0, 1) }
+code .code-cp { color: rgba(100, 56, 32, 1) }
+code .code-c1 { color: rgba(0, 116, 0, 1) }
+code .code-cs { color: rgba(0, 116, 0, 1) }
+code .code-gd { color: #A00000 }
+code .code-ge { font-style: italic }
+code .code-gr { color: #F00 }
+code .code-gh { color: navy; font-weight: bold }
+code .code-gi { color: #00A000 }
+code .code-go { color: gray }
+code .code-gp { color: navy; font-weight: bold }
+code .code-gs { font-weight: bold }
+code .code-gu { color: purple; font-weight: bold }
+code .code-gt { color: #0040D0 }
+code .code-kc { color: rgba(170, 13, 145, 1) }
+code .code-kd { color: rgba(170, 13, 145, 1) }
+code .code-kp { color: rgba(170, 13, 145, 1) }
+code .code-kr { color: rgba(170, 13, 145, 1) }
+code .code-kt { color: rgba(170, 51, 145, 1) }
+code .code-m { color: rgba(28, 0, 207, 1) }
+code .code-s { color: rgba(196, 26, 22, 1) }
+code .code-n { color: rgba(92, 38, 153, 1) }
+code .code-na { color: rgba(131, 48, 30, 1) }
+code .code-nb { color: rgba(170, 13, 145, 1) }
+code .code-nc { color: rgba(63, 110, 116, 1) }
+code .code-no { color: rgba(38, 71, 75, 1) }
+code .code-nd { color: #A2F }
+code .code-ni { color: #999; font-weight: bold }
+code .code-ne { color: #D2413A; font-weight: bold }
+code .code-nf { color: rgba(0, 0, 0, 1) }
+code .code-nl { color: rgba(0, 0, 0, 1) }
+code .code-nn { color: #00F; font-weight: bold }
+code .code-nt { color: green; font-weight: bold }
+code .code-nv { color: #19177C }
+code .code-ow { color: #A2F; font-weight: bold }
+code .code-w { color: #bbb }
+code .code-mf { color: rgba(28, 0, 207, 1) }
+code .code-mh { color: rgba(28, 0, 207, 1) }
+code .code-mi { color: rgba(28, 0, 207, 1) }
+code .code-mo { color: rgba(28, 0, 207, 1) }
+code .code-sb { color: rgba(196, 26, 22, 1) }
+code .code-sc { color: rgba(196, 26, 22, 1) }
+code .code-sd { color: rgba(196, 26, 22, 1) }
+code .code-s2 { color: rgba(196, 26, 22, 1) }
+code .code-se { color: rgba(196, 26, 22, 1) }
+code .code-sh { color: rgba(196, 26, 22, 1) }
+code .code-si { color: rgba(196, 26, 22, 1) }
+code .code-sx { color: rgba(196, 26, 22, 1) }
+code .code-sr { color: rgba(196, 26, 22, 1) }
+code .code-s1 { color: rgba(196, 26, 22, 1) }
+code .code-ss { color: rgba(196, 26, 22, 1) }
+code .code-bp { color: green }
+code .code-vc { color: rgba(63, 110, 116, 1) }
+code .code-vg { color: #19177C }
+code .code-vi { color: #19177C }
+code .code-il { color: rgba(28, 0, 207, 1) }
+

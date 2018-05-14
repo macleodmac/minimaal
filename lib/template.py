@@ -12,3 +12,4 @@ parsed = markdown_to_html(bd)
 html = template.render(title='title', body=parsed)
 
 write_html_to_file('/home/jamie/Desktop/Projects/minimaal/output.html', html)
+
