@@ -1,8 +1,13 @@
 import os
-from lib.load import load_config_file, get_paths_with_ext
+from pprint import pprint
+
 import jinja2
+
+from lib.load import load_config_file, get_paths_with_ext
 from lib.parse import read_and_split
+
 from blog.post import Post
+
 
 BASE_CONFIG = {
     'posts_per_page': 10,
@@ -10,24 +15,28 @@ BASE_CONFIG = {
     'title': 'minimaal',
     'md_ext': '.md',
     'date_format': '%d/%m/%Y',
+    'posts_directory': 'posts',
+    'output_directory': 'output',
+    'template_directory': 'template',
 }
+
 base_dir = '/home/jamie/Desktop/Projects/minimaal/'
 config_path = os.path.join(base_dir, 'config.yaml')
-posts_path = os.path.join(base_dir, 'posts')
-output_path = os.path.join(base_dir, 'output')
 
 with open(config_path, encoding='utf-8') as config_file:
-    config = load_config_file(config_file)
+    user_config = load_config_file(config_file)
 
-md_ext = config.get('md_ext', BASE_CONFIG['md_ext'])
+config = BASE_CONFIG
 
-paths = get_paths_with_ext(posts_path, md_ext)
+config.update(user_config)
+pprint(config)
+posts_path = os.path.join(base_dir, config['posts_directory'])
+output_path = os.path.join(base_dir, config['output_directory'])
+template_path = os.path.join(base_dir, config['template_directory'])
 
-env = jinja2.Environment(
-    loader=jinja2.FileSystemLoader('/home/jamie/Desktop/Projects/minimaal/template'),
-)
+paths = get_paths_with_ext(posts_path, config['md_ext'])
 
-template = env.get_template('child.html')
+env = jinja2.Environment(loader=jinja2.FileSystemLoader(template_path))
 
 for path in paths:
     metadata, content = read_and_split(path)
@@ -38,12 +47,8 @@ for path in paths:
         jinja_env=env,
     )
     directory, file_name = os.path.split(post.path)
-    output_dir = os.path.join(output_path, directory)
-    output_file = os.path.join(output_dir, file_name)
-    os.makedirs(output_dir, exist_ok=True)
-    print(output_file)
-    with open(output_file, 'w', encoding='utf-8') as output:
+    post_output_dir = os.path.join(output_path, directory)
+    post_output_path = os.path.join(post_output_dir, file_name)
+    os.makedirs(post_output_dir, exist_ok=True)
+    with open(post_output_path, 'w', encoding='utf-8') as output:
         output.writelines(post.html)
-
-print(paths)
-print(config)

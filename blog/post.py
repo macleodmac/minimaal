@@ -7,6 +7,8 @@ import re
 class Post(object):
 
     TEMPLATE_NAME = 'post.html'
+    EXTENSION = '.html'
+    EXCERPT_LENGTH = 140
 
     def __init__(self, config, content, metadata, jinja_env):
         self.config = config  # dict
@@ -27,39 +29,13 @@ class Post(object):
         return datetime.datetime.strptime(date_str, fmt)
 
     @property
-    def title(self):
-        return self.metadata.get('title')
-
-    @property
-    def url(self):
-        pass
-
-    @property
-    def url_friendly_title(self):
-        title = self.title.lower().strip()
-        title = re.sub('[^a-zA-Z\d]+', '-', title)
-        title = title.strip('-')
-        return title
-
-    @property
-    def path(self):
-        return os.path.join(
-            str(self.date.year),
-            str(self.date.month).zfill(2),
-            self.url_friendly_title + '.html',
-        )
-
-    @property
     def excerpt(self):
-        pass
+        default = '%s...' % (self.content[:self.EXCERPT_LENGTH], )
+        return self.metadata.get('excerpt', default)
 
     @property
-    def tags(self):
-        pass
-
-    @property
-    def template(self):
-        return self.jinja_env.get_template(self.TEMPLATE_NAME)
+    def html(self):
+        return self.template.render(title='title', content=self.html_content)
 
     @property
     def html_content(self):
@@ -72,23 +48,32 @@ class Post(object):
         return markdown2.markdown(self.content, extras=extras)
 
     @property
-    def html(self):
-        return self.template.render(title='title', content=self.html_content)
+    def path(self):
+        file_name = '%s%s' % (self.title_url_friendly, self.EXTENSION)
+        return os.path.join(
+            str(self.date.year),
+            str(self.date.month).zfill(2),
+            file_name,
+        )
 
+    @property
+    def tags(self):
+        return self.metadata.get('tags', [])
 
-class Index(object):
+    @property
+    def template(self):
+        return self.jinja_env.get_template(self.TEMPLATE_NAME)
 
-    TEMPLATE = 'index.html'
+    @property
+    def title(self):
+        return self.metadata.get('title')
 
-    def __init__(self, config, posts):
-        self.config = config
-        self.posts = posts
+    @property
+    def title_url_friendly(self):
+        title = self.title.lower().strip()
+        title = re.sub('[^a-zA-Z\d]+', '-', title)
+        return title.strip('-')
 
-
-class TagIndex(Index):
-
-    TEMPLATE = 'tag-index.html'
-
-    def __init__(self, config, posts):
-        self.config = config
-        self.posts = posts
+    @property
+    def url(self):
+        pass

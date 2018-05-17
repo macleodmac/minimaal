@@ -34,6 +34,3 @@ class TestParse(TestCase):
         actual = parse_metadata(test_meta)
 
         self.assertEqual(actual, expected)
-
-
-
