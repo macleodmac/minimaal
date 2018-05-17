@@ -6,9 +6,11 @@ env = jinja2.Environment(
 
 template = env.get_template('child.html')
 
-md, bd = read_and_split('/home/jamie/Desktop/Projects/Letterpress/press/sample_post.md')
-parsed = markdown_to_html(bd)
+md, bd = read_and_split('/home/jamie/Desktop/Projects/minimaal/posts/why_minimaal.md')
+print(md)
 
+parsed = markdown_to_html(bd)
+print(parsed)
 html = template.render(title='title', body=parsed)
 
 write_html_to_file('/home/jamie/Desktop/Projects/minimaal/output.html', html)

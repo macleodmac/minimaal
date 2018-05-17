@@ -1,11 +1,11 @@
-markdown_ext: .md
+md_ext: .md
 title: Jamie MacLeod
 description: Jamie MacLeod
 base_url: xyz.com
-
+posts_directory: posts
+template_directory: template
 date_format: '%d/%m/%Y'
 posts_per_page: 10
-
 css:
   - https://fonts.googleapis.com/css?family=Open+Sans
   - https://cdn.rawgit.com/necolas/normalize.css/master/normalize.css

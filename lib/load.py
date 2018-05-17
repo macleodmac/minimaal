@@ -2,18 +2,16 @@ import os
 import yaml
 
 
-# TODO: Refactor to use file handles
-def load_config(file_path):
-    with open(file_path, 'r') as f:
-        config = yaml.load(f)
-    return config
+def load_config_file(file_handle):
+    return yaml.load(file_handle)
 
 
 def get_paths_with_ext(root, ext='.md'):
     all_paths = []
     for directory, _, files in os.walk(root):
-        all_paths.extend([
+        paths = [
             os.path.join(directory, f) for f in files
             if f.endswith(ext)
-        ])
+        ]
+        all_paths.extend(paths)
     return all_paths
