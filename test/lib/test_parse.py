@@ -1,18 +1,9 @@
 from unittest import TestCase
 
-from lib.parse import markdown_to_html, split_markdown, parse_metadata
+from lib.parse import split_markdown, parse_metadata
 
 
 class TestParse(TestCase):
-
-    def test_parse_to_markdown_returns_valid(self):
-        test_md = """*This is a test*"""
-        expected = """<p><em>This is a test</em></p>"""
-
-        parsed = markdown_to_html(test_md)
-
-        actual = parsed.splitlines()[0]
-        self.assertEqual(expected, actual)
 
     def test_split_markdown_returns_blank_metadata_when_none_found(self):
         test_md = """*This is a test*"""

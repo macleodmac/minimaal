@@ -1,7 +1,8 @@
 import os
 from lib.load import load_config_file, get_paths_with_ext
 import jinja2
-from lib.parse import read_and_split, markdown_to_html
+from lib.parse import read_and_split
+from blog.post import Post
 
 BASE_CONFIG = {
     'posts_per_page': 10,
@@ -29,14 +30,20 @@ env = jinja2.Environment(
 template = env.get_template('child.html')
 
 for path in paths:
-    md, bd = read_and_split(path)
-
-    parsed = markdown_to_html(bd)
-    html = template.render(title='title', body=parsed)
-    _, file_name = os.path.split(path)
-    output_file = os.path.join(output_path, file_name)
+    metadata, content = read_and_split(path)
+    post = Post(
+        config=config,
+        content=content,
+        metadata=metadata,
+        jinja_env=env,
+    )
+    directory, file_name = os.path.split(post.path)
+    output_dir = os.path.join(output_path, directory)
+    output_file = os.path.join(output_dir, file_name)
+    os.makedirs(output_dir, exist_ok=True)
+    print(output_file)
     with open(output_file, 'w', encoding='utf-8') as output:
-        output.writelines(html)
+        output.writelines(post.html)
 
 print(paths)
 print(config)

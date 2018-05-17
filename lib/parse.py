@@ -11,17 +11,6 @@ This is the *body* text
 META_PATTERN = re.compile(r'((?:\w+:.*\n)+)+', re.U)
 META_DELIMITER = ':'
 
-MARKDOWN2_EXTRAS = {
-    'fenced-code-blocks': {
-        'cssclass': 'code',
-        'classprefix': 'code-',
-    },
-}
-
-
-def markdown_to_html(text, extras=MARKDOWN2_EXTRAS):
-    return markdown2.markdown(text, extras=extras)
-
 
 def read_and_split(file_path):
     with open(file_path, encoding='utf-8') as f:
