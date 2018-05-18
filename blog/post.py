@@ -76,4 +76,7 @@ class Post(object):
 
     @property
     def url(self):
-        pass
+        return os.path.join(
+            self.config.get('base_url'),
+            self.path,
+        )

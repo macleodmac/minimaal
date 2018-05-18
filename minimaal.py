@@ -10,6 +10,7 @@ from blog.post import Post
 
 
 BASE_CONFIG = {
+    'base_url': 'http://www.test-blog.com',
     'posts_per_page': 10,
     'description': 'This is a site generated using minimaal',
     'title': 'minimaal',

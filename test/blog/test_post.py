@@ -45,11 +45,11 @@ class TestParse(TestCase):
         self.assertEqual(self.post.excerpt, test_content + '...')
 
     def test_html(self):
-        # TODO
+        # TODO how to test?
         pass
 
     def test_html_content(self):
-        # TODO
+        # TODO how to test?
         pass
 
     def test_path_returns_well_formed_year_date_title(self):
@@ -84,12 +84,20 @@ class TestParse(TestCase):
             "Tests, and other ways to ensure code quality.":
                 "tests-and-other-ways-to-ensure-code-quality",
         }
-        for example, expected in examples.items():
+        for title, expected in examples.items():
             self.post.metadata.update({
-                'title': example,
+                'title': title,
             })
             self.assertEqual(self.post.title_url_friendly, expected)
 
-    def test_url(self):
-        # TODO
-        pass
+    def test_url_is_correctly_formed_from_config_date_and_title(self):
+        test_title = "Test Post - make sure you're into markdown!"
+        self.post.metadata.update({
+            'title': test_title,
+            'date': '10/05/2018',
+        })
+        self.post.config.update({
+            'base_url': 'http://www.test-blog.com',
+        })
+        expected = 'http://www.test-blog.com/2018/05/test-post-make-sure-you-re-into-markdown.html'
+        self.assertEqual(self.post.url, expected)
