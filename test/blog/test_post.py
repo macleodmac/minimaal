@@ -52,9 +52,13 @@ class TestParse(TestCase):
         # TODO
         pass
 
-    def test_path(self):
-        # TODO
-        pass
+    def test_path_returns_well_formed_year_date_title(self):
+        self.post.metadata.update({
+            'title': "This! It's a test title.",
+            'date': '20/09/2016',
+        })
+        expected = '2016/09/this-it-s-a-test-title.html'
+        self.assertEqual(self.post.path, expected)
 
     def test_tags(self):
         # TODO
@@ -65,12 +69,26 @@ class TestParse(TestCase):
         pass
 
     def test_title_returns_expected_value_from_metadata(self):
-        # TODO
-        pass
+        test_title = "This! It's a test title."
+        self.post.metadata.update({
+            'title': test_title,
+        })
+        self.assertEqual(self.post.title, test_title)
 
     def test_title_url_friendly_strips_non_alphanumeric_characters(self):
-        # TODO
-        pass
+        examples = {
+            "Test Post - make sure you're into markdown!":
+                "test-post-make-sure-you-re-into-markdown",
+            "What's so great about this package? Good question.":
+                "what-s-so-great-about-this-package-good-question",
+            "Tests, and other ways to ensure code quality.":
+                "tests-and-other-ways-to-ensure-code-quality",
+        }
+        for example, expected in examples.items():
+            self.post.metadata.update({
+                'title': example,
+            })
+            self.assertEqual(self.post.title_url_friendly, expected)
 
     def test_url(self):
         # TODO
