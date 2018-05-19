@@ -8,6 +8,8 @@ from lib.load import load_config_file, get_paths_with_ext
 from lib.parse import read_and_split
 
 from blog.post import Post
+from blog.index import Index
+
 
 
 BASE_CONFIG = {
@@ -42,6 +44,7 @@ paths = get_paths_with_ext(posts_path, config['md_ext'])
 
 env = jinja2.Environment(loader=jinja2.FileSystemLoader(template_path))
 
+all_posts = []
 for path in paths:
     metadata, content = read_and_split(path)
     post = Post(
@@ -50,9 +53,17 @@ for path in paths:
         metadata=metadata,
         jinja_env=env,
     )
+    all_posts.append(post)
+
+for post in all_posts:
     directory, file_name = os.path.split(post.path)
     post_output_dir = os.path.join(output_path, directory)
     post_output_path = os.path.join(post_output_dir, file_name)
     os.makedirs(post_output_dir, exist_ok=True)
     with open(post_output_path, 'w', encoding='utf-8') as output:
         output.writelines(post.html)
+
+index = Index(config=config, posts=all_posts)
+index_path = os.path.join(output_path, 'index.html')
+with open(index_path, 'w', encoding='utf-8') as output:
+    index.render(output)
