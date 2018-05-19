@@ -57,7 +57,7 @@ class TestParse(TestCase):
             'title': "This! It's a test title.",
             'date': '20/09/2016',
         })
-        expected = '2016/09/this-it-s-a-test-title.html'
+        expected = '2016/09/this-its-a-test-title.html'
         self.assertEqual(self.post.path, expected)
 
     def test_tags(self):
@@ -78,9 +78,9 @@ class TestParse(TestCase):
     def test_title_url_friendly_strips_non_alphanumeric_characters(self):
         examples = {
             "Test Post - make sure you're into markdown!":
-                "test-post-make-sure-you-re-into-markdown",
+                "test-post-make-sure-youre-into-markdown",
             "What's so great about this package? Good question.":
-                "what-s-so-great-about-this-package-good-question",
+                "whats-so-great-about-this-package-good-question",
             "Tests, and other ways to ensure code quality.":
                 "tests-and-other-ways-to-ensure-code-quality",
         }
@@ -99,5 +99,5 @@ class TestParse(TestCase):
         self.post.config.update({
             'base_url': 'http://www.test-blog.com',
         })
-        expected = 'http://www.test-blog.com/2018/05/test-post-make-sure-you-re-into-markdown.html'
+        expected = 'http://www.test-blog.com/2018/05/test-post-make-sure-youre-into-markdown.html'
         self.assertEqual(self.post.url, expected)

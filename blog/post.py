@@ -71,6 +71,7 @@ class Post(object):
     @property
     def title_url_friendly(self):
         title = self.title.lower().strip()
+        title = title.replace('\'','')
         title = re.sub('[^a-zA-Z\d]+', '-', title)
         return title.strip('-')
 
