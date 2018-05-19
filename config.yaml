@@ -4,6 +4,7 @@ description: Jamie MacLeod
 base_url: xyz.com
 posts_directory: posts
 template_directory: template
+output_directory: docs
 date_format: '%d/%m/%Y'
 posts_per_page: 10
 css:
