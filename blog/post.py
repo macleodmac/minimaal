@@ -1,7 +1,10 @@
-import markdown2
 import datetime
 import os
 import re
+
+import markdown2
+
+from lib.decorators import cached_property
 
 
 class Post(object):
@@ -9,6 +12,7 @@ class Post(object):
     TEMPLATE_NAME = 'post.html'
     EXTENSION = '.html'
     EXCERPT_LENGTH = 140
+    AVG_WPM = 200
 
     def __init__(self, config, content, metadata, jinja_env):
         self.config = config  # dict
@@ -22,22 +26,22 @@ class Post(object):
         #   excerpt: (optional) used to create precis
         #   tags: (optional) used to categorise posts
 
-    @property
+    @cached_property
     def date(self):
         date_str = self.metadata.get('date')
         fmt = self.config.get('date_format')
         return datetime.datetime.strptime(date_str, fmt)
 
-    @property
+    @cached_property
     def date_pretty(self):
         return self.date.strftime("%B %d, %Y")
 
-    @property
+    @cached_property
     def excerpt(self):
         default = '%s...' % (self.content[:self.EXCERPT_LENGTH], )
         return self.metadata.get('excerpt', default)
 
-    @property
+    @cached_property
     def html(self):
         return self.template.render(
             title=self.metadata.get('title'),
@@ -47,7 +51,7 @@ class Post(object):
             date=self.date_pretty,
         )
 
-    @property
+    @cached_property
     def html_content(self):
         extras = {
             'fenced-code-blocks': {
@@ -57,7 +61,7 @@ class Post(object):
         }
         return markdown2.markdown(self.content, extras=extras)
 
-    @property
+    @cached_property
     def path(self):
         file_name = '%s%s' % (self.title_url_friendly, self.EXTENSION)
         return os.path.join(
@@ -66,7 +70,7 @@ class Post(object):
             file_name,
         )
 
-    @property
+    @cached_property
     def tags(self):
         tags = self.metadata.get('tags', [])
         tags = [tag.strip() for tag in tags.split(',')]
@@ -80,7 +84,7 @@ class Post(object):
     def title(self):
         return self.metadata.get('title')
 
-    @property
+    @cached_property
     def title_url_friendly(self):
         title = self.title.lower().strip()
         title = title.replace('\'','')
@@ -93,3 +97,7 @@ class Post(object):
             self.config.get('base_url'),
             self.path,
         )
+
+    @cached_property
+    def word_count(self):
+        return len(self.content.split())

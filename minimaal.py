@@ -58,7 +58,9 @@ for path in paths:
 for post in all_posts:
     directory, file_name = os.path.split(post.path)
     post_output_dir = os.path.join(output_path, directory)
+    print(post.word_count)
     post_output_path = os.path.join(post_output_dir, file_name)
+    print(post.word_count)
     os.makedirs(post_output_dir, exist_ok=True)
     with open(post_output_path, 'w', encoding='utf-8') as output:
         output.writelines(post.html)

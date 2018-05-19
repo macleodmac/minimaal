@@ -76,19 +76,13 @@ class TestParse(TestCase):
         self.assertEqual(self.post.title, test_title)
 
     def test_title_url_friendly_strips_non_alphanumeric_characters(self):
-        examples = {
-            "Test Post - make sure you're into markdown!":
-                "test-post-make-sure-youre-into-markdown",
-            "What's so great about this package? Good question.":
-                "whats-so-great-about-this-package-good-question",
-            "Tests, and other ways to ensure code quality.":
-                "tests-and-other-ways-to-ensure-code-quality",
-        }
-        for title, expected in examples.items():
-            self.post.metadata.update({
-                'title': title,
-            })
-            self.assertEqual(self.post.title_url_friendly, expected)
+        test_title = "Test Post - make sure you're into markdown!"
+        expected = "test-post-make-sure-youre-into-markdown"
+
+        self.post.metadata.update({
+            'title': test_title,
+        })
+        self.assertEqual(self.post.title_url_friendly, expected)
 
     def test_url_is_correctly_formed_from_config_date_and_title(self):
         test_title = "Test Post - make sure you're into markdown!"

@@ -18,7 +18,6 @@ class Index(object):
         file_handle.writelines(self.html)
 
 
-
 class TagIndex(Index):
 
     TEMPLATE = 'tag-index.html'
