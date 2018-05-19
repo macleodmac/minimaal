@@ -29,13 +29,23 @@ class Post(object):
         return datetime.datetime.strptime(date_str, fmt)
 
     @property
+    def date_pretty(self):
+        return self.date.strftime("%B %d, %Y")
+
+    @property
     def excerpt(self):
         default = '%s...' % (self.content[:self.EXCERPT_LENGTH], )
         return self.metadata.get('excerpt', default)
 
     @property
     def html(self):
-        return self.template.render(title='title', content=self.html_content)
+        return self.template.render(
+            title=self.metadata.get('title'),
+            content=self.html_content,
+            css=self.config.get('css'),
+            tags=self.tags,
+            date=self.date_pretty,
+        )
 
     @property
     def html_content(self):
@@ -58,7 +68,9 @@ class Post(object):
 
     @property
     def tags(self):
-        return self.metadata.get('tags', [])
+        tags = self.metadata.get('tags', [])
+        tags = [tag.strip() for tag in tags.split(',')]
+        return tags
 
     @property
     def template(self):

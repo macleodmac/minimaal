@@ -1,3 +1,4 @@
+import argparse
 import os
 from pprint import pprint
 
@@ -20,6 +21,8 @@ BASE_CONFIG = {
     'output_directory': 'output',
     'template_directory': 'template',
 }
+
+parser = argparse.ArgumentParser(description='Load some config file for minimaal')
 
 base_dir = '/home/jamie/Desktop/Projects/minimaal/'
 config_path = os.path.join(base_dir, 'config.yaml')

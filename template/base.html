@@ -4,10 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{% block title %}Base Title{% endblock %}</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
-    <link rel="stylesheet" href="https://cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
-    <link rel="stylesheet" href="https://cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
-    <link rel="stylesheet" href="/home/jamie/Desktop/Projects/minimaal/template/css/black.css">
+    {% for item in css %}
+    <link rel="stylesheet" href="{{ item }}" />
+    {% endfor %}
 </head>
 <body>
     <div class="container">
