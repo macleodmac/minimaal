@@ -20,20 +20,14 @@ class Post(object):
         self.metadata = metadata  # dict
         self.jinja_env = jinja_env
 
-        # metadata contains:
-        #   date: used to create url
-        #   title: used to create url, page title
-        #   excerpt: (optional) used to create precis
-        #   tags: (optional) used to categorise posts
-
     @cached_property
     def date(self):
         date_str = self.metadata.get('date')
         fmt = self.config.get('date_format')
         return datetime.datetime.strptime(date_str, fmt)
 
-    @cached_property
-    def date_pretty(self):
+    @property
+    def pretty_date(self):
         return self.date.strftime("%B %d, %Y")
 
     @cached_property
@@ -43,53 +37,42 @@ class Post(object):
 
     @cached_property
     def html(self):
-        return self.template.render(
-            title=self.metadata.get('title'),
-            content=self.html_content,
-            css=self.config.get('css'),
-            tags=self.tags,
-            date=self.date_pretty,
-        )
-
-    @cached_property
-    def html_content(self):
+        template = self.jinja_env.get_template(self.TEMPLATE_NAME)
         extras = {
             'fenced-code-blocks': {
                 'cssclass': 'code',
                 'classprefix': 'code-',
             },
         }
-        return markdown2.markdown(self.content, extras=extras)
+        content = markdown2.markdown(self.content, extras=extras)
+        return template.render(
+            title=self.metadata.get('title'),
+            content=content,
+            css=self.config.get('css'),
+            tags=self.tags,
+            date=self.pretty_date,
+        )
 
     @cached_property
     def path(self):
-        file_name = '%s%s' % (self.title_url_friendly, self.EXTENSION)
+        title = self.title.lower().strip().replace('\'', '')
+        title = re.sub('[^a-zA-Z\d]+', '-', title).strip('-')
         return os.path.join(
             str(self.date.year),
             str(self.date.month).zfill(2),
-            file_name,
+            title + self.EXTENSION,
         )
 
     @cached_property
     def tags(self):
         tags = self.metadata.get('tags', [])
-        tags = [tag.strip() for tag in tags.split(',')]
-        return tags
-
-    @property
-    def template(self):
-        return self.jinja_env.get_template(self.TEMPLATE_NAME)
+        if tags:
+            tags = [tag.strip() for tag in tags.split(',')]
+        return list(filter(lambda x: x, tags))
 
     @property
     def title(self):
         return self.metadata.get('title')
-
-    @cached_property
-    def title_url_friendly(self):
-        title = self.title.lower().strip()
-        title = title.replace('\'','')
-        title = re.sub('[^a-zA-Z\d]+', '-', title)
-        return title.strip('-')
 
     @property
     def url(self):
@@ -100,4 +83,5 @@ class Post(object):
 
     @cached_property
     def word_count(self):
+        # TODO: test
         return len(self.content.split())

@@ -60,13 +60,22 @@ class TestParse(TestCase):
         expected = '2016/09/this-its-a-test-title.html'
         self.assertEqual(self.post.path, expected)
 
-    def test_tags(self):
-        # TODO
-        pass
+    def test_tags_returns_populated_list_from_metadata_delimited_list(self):
+        self.post.metadata.update({
+            'tags': "technology, python, learning",
+        })
+        expected = ['technology', 'python', 'learning']
+        self.assertEqual(self.post.tags, expected)
 
-    def test_template(self):
-        # TODO
-        pass
+    def test_tags_returns_discards_empty_tags_when_misspecified(self):
+        self.post.metadata.update({
+            'tags': ", python, learning,",
+        })
+        expected = ['python', 'learning']
+        self.assertEqual(self.post.tags, expected)
+
+    def test_tags_returns_empty_list_when_no_specified_tags(self):
+        self.assertEqual(self.post.tags, [])
 
     def test_title_returns_expected_value_from_metadata(self):
         test_title = "This! It's a test title."
@@ -74,15 +83,6 @@ class TestParse(TestCase):
             'title': test_title,
         })
         self.assertEqual(self.post.title, test_title)
-
-    def test_title_url_friendly_strips_non_alphanumeric_characters(self):
-        test_title = "Test Post - make sure you're into markdown!"
-        expected = "test-post-make-sure-youre-into-markdown"
-
-        self.post.metadata.update({
-            'title': test_title,
-        })
-        self.assertEqual(self.post.title_url_friendly, expected)
 
     def test_url_is_correctly_formed_from_config_date_and_title(self):
         test_title = "Test Post - make sure you're into markdown!"
