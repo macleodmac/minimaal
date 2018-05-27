@@ -64,7 +64,7 @@ static_path = os.path.join(output_path, 'static')
 css_path = os.path.join(static_path, 'css')
 
 os.makedirs(css_path, exist_ok=True)
-
+rel_url = 'minimaal'
 css_paths = []
 for css in config.get('css'):
     _, file_name = os.path.split(css)
@@ -72,7 +72,7 @@ for css in config.get('css'):
     file_name = re.sub('[^0-9a-zA-Z.]+', '_', file_name).lower()
     local_path = os.path.join(css_path, file_name + '.css')
     urllib.request.urlretrieve(css, local_path)
-    rel_path = '/' + os.path.relpath(local_path, output_path)
+    rel_path = '/' + os.path.join(rel_url, os.path.relpath(local_path, output_path))
     print(css, rel_path)
     css_paths.append(rel_path)
 
