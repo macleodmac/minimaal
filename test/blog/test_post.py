@@ -1,6 +1,6 @@
 import datetime
 from unittest import TestCase
-
+from unittest.mock import Mock
 from blog.post import Post
 
 
@@ -22,7 +22,7 @@ class TestParse(TestCase):
             config=self.config,
             content=self.content,
             metadata=self.metadata,
-            jinja_env=None,
+            jinja_env=Mock(),
         )
 
     def test_date_is_valid_datetime_object(self):

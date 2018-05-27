@@ -10,4 +10,4 @@ css:
   - https://fonts.googleapis.com/css?family=Open+Sans
   - https://cdn.rawgit.com/necolas/normalize.css/master/normalize.css
   - https://cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css
-  - /template/css/black.css
+  - file:///home/jamie/Desktop/Projects/minimaal/template/css/black.css

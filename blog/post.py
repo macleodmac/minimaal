@@ -18,7 +18,7 @@ class Post(object):
         self.config = config  # dict
         self.content = content  # markdown
         self.metadata = metadata  # dict
-        self.jinja_env = jinja_env
+        self.template = jinja_env.get_template(self.TEMPLATE_NAME)
 
     @cached_property
     def date(self):
@@ -37,7 +37,6 @@ class Post(object):
 
     @cached_property
     def html(self):
-        template = self.jinja_env.get_template(self.TEMPLATE_NAME)
         extras = {
             'fenced-code-blocks': {
                 'cssclass': 'code',
@@ -45,10 +44,9 @@ class Post(object):
             },
         }
         content = markdown2.markdown(self.content, extras=extras)
-        return template.render(
+        return self.template.render(
             title=self.metadata.get('title'),
             content=content,
-            css=self.config.get('css'),
             tags=self.tags,
             date=self.pretty_date,
         )
@@ -68,7 +66,7 @@ class Post(object):
         tags = self.metadata.get('tags', [])
         if tags:
             tags = [tag.strip() for tag in tags.split(',')]
-        return list(filter(lambda x: x, tags))
+        return list(filter(None, tags))
 
     @property
     def title(self):
