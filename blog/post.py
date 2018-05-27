@@ -5,14 +5,16 @@ import re
 import markdown2
 
 from lib.decorators import cached_property
+from lib.parse import make_url_friendly
+from lib.mixin import RenderFileMixin
 
 
-class Post(object):
+class Post(RenderFileMixin):
 
     TEMPLATE_NAME = 'post.html'
     EXTENSION = '.html'
     EXCERPT_LENGTH = 140
-    AVG_WPM = 200
+    # AVG_WPM = 200
 
     def __init__(self, config, content, metadata, jinja_env):
         self.config = config
@@ -53,8 +55,7 @@ class Post(object):
 
     @cached_property
     def path(self):
-        title = self.title.lower().strip().replace('\'', '')
-        title = re.sub('[^a-zA-Z\d]+', '-', title).strip('-')
+        title = make_url_friendly(self.title)
         return os.path.join(
             str(self.date.year),
             str(self.date.month).zfill(2),

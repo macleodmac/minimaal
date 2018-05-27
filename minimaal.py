@@ -10,7 +10,7 @@ from lib.config import load_config_file, download_css_paths, build_config, get_l
 from lib.parse import read_and_split
 
 from blog.post import Post
-from blog.index import Index
+from blog.index import Index, make_tag_indices
 
 log = get_logger()
 
@@ -65,15 +65,29 @@ for post in all_posts:
     os.makedirs(post_output_dir, exist_ok=True)
     with open(post_output_path, 'w', encoding='utf-8') as output:
         log.info("Writing post %s to %s", post.title, post_output_path)
-        output.writelines(post.html)
+        post.render(output)
         print(post.excerpt)
 
 index = Index(
     config=config,
     posts=all_posts,
     jinja_env=env,
+    title='Home'
 )
 index_path = os.path.join(PATHS['output'], 'index.html')
 with open(index_path, 'w', encoding='utf-8') as output:
     log.info("Writing index to %s", index_path)
     output.writelines(index.html)
+
+tag_indices = make_tag_indices(
+    config=config,
+    posts=all_posts,
+    jinja_env=env,
+)
+
+for index in tag_indices:
+    os.makedirs(index.directory, exist_ok=True)
+    with open(index.path, 'w', encoding='utf-8') as output:
+        log.info("Writing index to %s", index.path)
+        index.render(output)
+

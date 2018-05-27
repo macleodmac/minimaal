@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 {% block title %}{{ title }}{% endblock %}
 {% block body %}
-    <blockquote class="site-description">{{ site_description }}</blockquote>
+    {% block site_description %}{% endblock %}
+    {% block index_title %}{% endblock %}
     {% for post in posts %}
         <h3><a href="{{ post.path }}" class="post-title">{{ post.title }}</a></h3>
         <h5>{{ post.pretty_date.upper() }}</h5>

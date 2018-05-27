@@ -10,7 +10,7 @@ social_links:
   facebook: https://www.facebook.com/abc123abc321
   github:   https://github.com/macleodmac
 css:
-  - https://fonts.googleapis.com/css?family=Open+Sans:300,600
+  - https://fonts.googleapis.com/css?family=Open+Sans:300
   - https://cdn.rawgit.com/necolas/normalize.css/master/normalize.css
   - https://cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css
   - file:///home/jamie/Desktop/Projects/minimaal/template/css/black.css
