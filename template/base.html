@@ -3,15 +3,18 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{% block title %}Base Title{% endblock %}</title>
+    <title>{% if title -%}{{ title + ' - '}}{% endif -%}{{ site_title }}</title>
     {% for item in css %}
     <link rel="stylesheet" href="{{ item }}" />
     {% endfor %}
 </head>
 <body>
-    <div class="container">
-        Default header
-    </div>
+    <header>
+        <div class="container">
+            <h2 class="site-title"><a href="#">{{ site_title }}</a></h2>
+        </div>
+        <hr />
+    </header>
     <div class="container">
         {% block body %}Base Body{% endblock %}
     </div>

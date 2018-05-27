@@ -1,7 +1,7 @@
 import logging
 import os
 import re
-import urllib
+import urllib.request
 
 import yaml
 
@@ -9,13 +9,13 @@ import yaml
 BASE_CONFIG = {
     'base_url': 'http://www.test-blog.com',
     'posts_per_page': 10,
-    'description': 'This is a site generated using minimaal',
-    'title': 'minimaal',
+    'site_description': 'This is a site generated using minimaal',
     'md_ext': '.md',
     'date_format': '%d/%m/%Y',
     'posts_directory': 'posts',
     'output_directory': 'output',
     'template_directory': 'template',
+    'site_title': 'My Blog',
 }
 
 

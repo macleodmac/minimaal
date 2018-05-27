@@ -1,9 +1,10 @@
 {% extends "base.html" %}
 {% block title %}{{ title }}{% endblock %}
 {% block body %}
+    <blockquote class="site-description">{{ site_description }}</blockquote>
     {% for post in posts %}
-        <h2><a href="{{ post.path }}">{{ post.title }}</a></h2>
-        <h5>{{ post.pretty_date }}</h5>
+        <h3><a href="{{ post.path }}" class="post-title">{{ post.title }}</a></h3>
+        <h5>{{ post.pretty_date.upper() }}</h5>
         <p>{{ post.excerpt }}</p>
         {% for tag in post.tags %}
             <a class="button button-outline" href="#">{{ tag }}</a>

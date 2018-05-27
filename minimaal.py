@@ -44,6 +44,8 @@ css_paths = download_css_paths(
     destination=css_path,
 )
 env.globals['css'] = css_paths
+env.globals['site_title'] = config['site_title']
+env.globals['site_description'] = config['site_description']
 
 all_posts = []
 for path in paths:

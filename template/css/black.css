@@ -1,51 +1,84 @@
-/* Include this stylesheet after Milligram or merge it with your main.css */
-
-a {
-    color: #111111;
+html {
+    height: 100%;
 }
 
 body {
+    min-height: 100%;
+}
+
+blockquote {
+    border-left: 0.3rem solid #FF7400;
+}
+
+blockquote.site-description {
+    color: #FF7400;
+    font-size: 2em;
+}
+
+.site-title {
+    font-size: 2.5rem;
+}
+/* Include this stylesheet after Milligram or merge it with your main.css */
+
+a {
+    color: black;
+}
+
+a:hover {
+    color: #FF7400;
+}
+
+.button {
+    line-height: 2.5rem;
+    height: 2.7rem;
+    padding: 0 1.0rem;
+}
+
+body {
+    border-top: 0.3rem solid #FF7400;
+    border-bottom: 0.3rem solid #FF7400;
     font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+    padding: 3.0rem 0;
 }
 
 .container {
-    max-width: 90.0rem;
+    max-width: 75.0rem;
 }
 
 .button, button, input[type='button'], input[type='reset'], input[type='submit'] {
-    background-color: #111111;
-    border: .1rem solid #111111;
+    background-color: #FF7400;
+    border: .1rem solid #FF7400;
 }
 
 .button.button-outline, button.button-outline, input[type='button'].button-outline, input[type='reset'].button-outline, input[type='submit'].button-outline {
-    color: #111111;
+    color: #FF7400;
 }
 
 .button.button-clear, button.button-clear, input[type='button'].button-clear, input[type='reset'].button-clear, input[type='submit'].button-clear {
-    color: #111111;
+    color: #FF7400;
 }
 
 pre.prettyprint .lit {
-    color: #111111;
+    color: #FF7400;
 }
 
 .share-icon {
-    background-color: #111111;
-    color: #ffffff;
+    background-color: #FF7400;
+    color: #FF7400;
 }
 
 pre {
     background: #f4f5f6;
-    border-left: .3rem solid #111111;
+    border-left: .3rem solid #FF7400;
 }
 
 pre.prettyprint {
-    border-left: .3rem solid #111111 !important;
+    border-left: .3rem solid #FF7400 !important;
     color: #655d5d;
 }
 
 pre.prettyprint .tag {
-    color: #111111;
+    color: #FF7400;
 }
 
 pre.prettyprint .atn {
@@ -53,12 +86,12 @@ pre.prettyprint .atn {
 }
 
 input[type='email']:focus, input[type='number']:focus, input[type='password']:focus, input[type='search']:focus, input[type='tel']:focus, input[type='text']:focus, input[type='url']:focus, textarea:focus, select:focus {
-    border: .1rem solid #111111;
+    border: .1rem solid #FF7400;
 }
 
 .github-corner {
     color: #f4f5f6;
-    fill: #111111;
+    fill: #FF7400;
 }
 
 code .code-c { color: rgba(0, 131, 18, 1) }
@@ -121,4 +154,3 @@ code .code-vc { color: rgba(63, 110, 116, 1) }
 code .code-vg { color: #19177C }
 code .code-vi { color: #19177C }
 code .code-il { color: rgba(28, 0, 207, 1) }
-

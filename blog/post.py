@@ -15,9 +15,9 @@ class Post(object):
     AVG_WPM = 200
 
     def __init__(self, config, content, metadata, jinja_env):
-        self.config = config  # dict
-        self.content = content  # markdown
-        self.metadata = metadata  # dict
+        self.config = config
+        self.content = content
+        self.metadata = metadata
         self.template = jinja_env.get_template(self.TEMPLATE_NAME)
 
     @cached_property
@@ -45,7 +45,7 @@ class Post(object):
         }
         content = markdown2.markdown(self.content, extras=extras)
         return self.template.render(
-            title=self.metadata.get('title'),
+            title=self.title,
             content=content,
             tags=self.tags,
             date=self.pretty_date,
