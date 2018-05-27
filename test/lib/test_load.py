@@ -2,36 +2,10 @@ from unittest.mock import patch
 from io import StringIO
 from unittest import TestCase
 
-from lib.load import load_config_file, get_paths_with_ext
+from lib.load import get_paths_with_ext
 
 
 class TestLoad(TestCase):
-
-    def test_load_config_file_returns_dict(self):
-        yaml = """
-        key: val
-        key2: val2
-        list1:
-          - el1
-          - el2
-          - el3
-        """
-        handle = StringIO()
-        handle.writelines(yaml)
-        handle.seek(0)
-
-        actual = load_config_file(handle)
-
-        expected = {
-            'key': 'val',
-            'key2': 'val2',
-            'list1': [
-                'el1',
-                'el2',
-                'el3',
-            ],
-        }
-        self.assertEqual(expected, actual)
 
     def test_get_paths_with_ext_returns_expected_absolute_paths(self):
         mock_walk_return = [

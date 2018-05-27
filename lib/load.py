@@ -1,9 +1,4 @@
 import os
-import yaml
-
-
-def load_config_file(file_handle):
-    return yaml.load(file_handle)
 
 
 def get_paths_with_ext(root, ext='.md'):
