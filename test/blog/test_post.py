@@ -44,14 +44,6 @@ class TestPost(TestCase):
 
         self.assertEqual(self.post.excerpt, test_content + '...')
 
-    def test_html(self):
-        # TODO how to test?
-        pass
-
-    def test_html_content(self):
-        # TODO how to test?
-        pass
-
     def test_path_returns_well_formed_year_date_title(self):
         self.post.metadata.update({
             'title': "This! It's a test title.",

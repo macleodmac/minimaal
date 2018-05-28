@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from lib.parse import split_markdown, parse_metadata
+from lib.parse import split_markdown, parse_metadata, make_url_friendly
 
 
 class TestParse(TestCase):
@@ -32,5 +32,13 @@ class TestParse(TestCase):
         expected = {'key': 'val', 'key2': 'val2'}
 
         actual = parse_metadata(test_meta)
+
+        self.assertEqual(actual, expected)
+
+    def test_make_url_friendly_handles_punctuation_correctly(self):
+        text = "This is a test! You're ready to make this URL friendly?-"
+        expected = "this-is-a-test-youre-ready-to-make-this-url-friendly"
+
+        actual = make_url_friendly(text)
 
         self.assertEqual(actual, expected)

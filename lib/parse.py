@@ -34,7 +34,6 @@ def parse_metadata(meta_text):
 
 
 def make_url_friendly(text):
-    # TODO: test
     text = text.lower().strip().replace('\'', '')
     text = re.sub('[^a-zA-Z\d]+', '-', text).strip('-')
     return text
