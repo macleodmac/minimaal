@@ -3,8 +3,6 @@ import os
 
 class RenderFileMixin(object):
 
-    #TODO: test
-
     @property
     def path(self):
         raise NotImplementedError

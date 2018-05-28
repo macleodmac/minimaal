@@ -7,25 +7,6 @@ from blog.post import Post
 
 class TestIndex(TestCase):
 
-    # def setUp(self):
-    #     self.metadata = {
-    #         'title': 'This: is the post title!',
-    #         'date': '29/09/2017',
-    #         'excerpt': 'This is the excerpt of the post.',
-    #     }
-    #     self.content = """# This is a test
-    #     * I hope you like reading markdown.
-    #     * If not, you're out of luck!"""
-    #     self.config = {
-    #         'date_format': '%d/%m/%Y',
-    #     }
-    #     self.post = Post(
-    #         config=self.config,
-    #         content=self.content,
-    #         metadata=self.metadata,
-    #         jinja_env=Mock(),
-    #     )
-
     @staticmethod
     def _post_with_tags(tags):
         return Post(

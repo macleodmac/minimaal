@@ -1,7 +1,7 @@
 from collections import defaultdict
 import os
 from lib.parse import make_url_friendly
-from lib.mixin import RenderFileMixin
+from blog.render import RenderFileMixin
 
 
 class Index(RenderFileMixin):

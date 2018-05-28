@@ -5,7 +5,7 @@ import markdown2
 
 from lib.decorators import cached_property
 from lib.parse import make_url_friendly
-from lib.mixin import RenderFileMixin
+from blog.render import RenderFileMixin
 
 
 class Post(RenderFileMixin):
