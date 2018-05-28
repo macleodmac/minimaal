@@ -47,9 +47,12 @@ css_paths = download_css_paths(
 css_paths = [os.path.relpath(path, PATHS['output']) for path in css_paths]
 css_paths = ['/' + os.path.join(config.get('base_url'), path) for path in css_paths]
 
-env.globals['css'] = css_paths
-env.globals['site_title'] = config['site_title']
-env.globals['site_description'] = config['site_description']
+env.globals.update({
+    'css': css_paths,
+    'site_title': config['site_title'],
+    'site_description': config['site_description'],
+    'base_url': '/' + config['base_url'].lstrip('/'),
+})
 
 all_posts = []
 for path in paths:
