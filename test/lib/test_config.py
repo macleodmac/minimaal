@@ -1,7 +1,7 @@
 from io import StringIO
 from unittest import TestCase
 
-from lib.config import load_config_file
+from lib.config import load_config_file, build_config
 
 
 class TestConfig(TestCase):
@@ -31,3 +31,17 @@ class TestConfig(TestCase):
             ],
         }
         self.assertEqual(expected, actual)
+
+    def test_build_config_favours_user_config_over_base_config(self):
+        base_config = {'foo': 'base_foo', 'bar': 'base_bar'}
+        user_config = {'foo': 'user_foo', 'baz': 'user_baz'}
+
+        actual = build_config(user_config, base_config)
+
+        expected = {
+            'foo': 'user_foo',
+            'bar': 'base_bar',
+            'baz': 'user_baz',
+        }
+
+        self.assertEqual(actual, expected)

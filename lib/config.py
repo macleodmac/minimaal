@@ -24,13 +24,11 @@ def load_config_file(file_handle):
 
 
 def build_config(user_config, base_config=BASE_CONFIG):
-    # TODO: test
     base_config.update(user_config)
     return base_config
 
 
 def get_logger():
-    # TODO: test
     logging.basicConfig(
         format='[%(asctime)s] %(levelname)-4s %(message)s',
         level=logging.INFO,
