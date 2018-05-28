@@ -63,8 +63,24 @@
   <p>This is a blockquote! </p>
 </blockquote>
 
-<div class="code"><pre><span></span><code><span class="code-n">s</span> <span class="code-o">=</span> <span class="code-s2">&quot;Python syntax highlighting&quot;</span>
-<span class="code-k">print</span> <span class="code-n">s</span>
+<div class="code"><pre><span></span><code><span class="code-k">def</span> <span class="code-nf">make_tag_indices</span><span class="code-p">(</span><span class="code-n">config</span><span class="code-p">,</span> <span class="code-n">posts</span><span class="code-p">,</span> <span class="code-n">jinja_env</span><span class="code-p">):</span>
+    <span class="code-n">grouped</span> <span class="code-o">=</span> <span class="code-n">_group_posts_by_tag</span><span class="code-p">(</span><span class="code-n">posts</span><span class="code-p">)</span>
+    <span class="code-k">return</span> <span class="code-p">[</span>
+        <span class="code-n">TagIndex</span><span class="code-p">(</span>
+            <span class="code-n">config</span><span class="code-o">=</span><span class="code-n">config</span><span class="code-p">,</span>
+            <span class="code-n">posts</span><span class="code-o">=</span><span class="code-n">posts</span><span class="code-p">,</span>
+            <span class="code-n">jinja_env</span><span class="code-o">=</span><span class="code-n">jinja_env</span><span class="code-p">,</span>
+            <span class="code-n">title</span><span class="code-o">=</span><span class="code-n">tag</span><span class="code-p">,</span>
+        <span class="code-p">)</span> <span class="code-k">for</span> <span class="code-n">tag</span><span class="code-p">,</span> <span class="code-n">posts</span> <span class="code-ow">in</span> <span class="code-n">grouped</span><span class="code-o">.</span><span class="code-n">items</span><span class="code-p">()</span>
+    <span class="code-p">]</span>
+
+
+<span class="code-k">def</span> <span class="code-nf">_group_posts_by_tag</span><span class="code-p">(</span><span class="code-n">posts</span><span class="code-p">):</span>
+    <span class="code-n">grouped</span> <span class="code-o">=</span> <span class="code-n">defaultdict</span><span class="code-p">(</span><span class="code-nb">list</span><span class="code-p">)</span>
+    <span class="code-k">for</span> <span class="code-n">post</span> <span class="code-ow">in</span> <span class="code-n">posts</span><span class="code-p">:</span>
+        <span class="code-k">for</span> <span class="code-n">tag</span> <span class="code-ow">in</span> <span class="code-n">post</span><span class="code-o">.</span><span class="code-n">tags</span><span class="code-p">:</span>
+            <span class="code-n">grouped</span><span class="code-p">[</span><span class="code-n">tag</span><span class="code-p">]</span><span class="code-o">.</span><span class="code-n">append</span><span class="code-p">(</span><span class="code-n">post</span><span class="code-p">)</span>
+    <span class="code-k">return</span> <span class="code-n">grouped</span>
 </code></pre></div>
 
 
