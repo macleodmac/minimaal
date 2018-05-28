@@ -1,6 +1,6 @@
 base_url: minimaal
-site_title: Jamie MacLeod
-site_description: a random collection of thoughts on software, technology, and personal finance
+site_title: minimaal
+site_description: a lightweight, minimal static blog generator written in python using markdown and jinja2
 posts_directory: posts
 template_directory: template
 output_directory: docs
