@@ -4,7 +4,7 @@ from unittest.mock import Mock
 from blog.post import Post
 
 
-class TestParse(TestCase):
+class TestPost(TestCase):
 
     def setUp(self):
         self.metadata = {

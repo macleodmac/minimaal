@@ -24,6 +24,7 @@ with open(config_path, encoding='utf-8') as config_file:
 config = build_config(user_config)
 
 pprint(config)
+
 PATHS = {
     'output': os.path.join(base_dir, config['output_directory']),
     'posts': os.path.join(base_dir, config['posts_directory']),
@@ -91,3 +92,5 @@ for index in tag_indices:
         log.info("Writing index to %s", index.path)
         index.render(output)
 
+if __name__ == '__main__':
+    pass

@@ -15,6 +15,9 @@ class Index(RenderFileMixin):
         self.template = jinja_env.get_template(self.TEMPLATE_NAME)
         self.title = title
 
+    def __len__(self):
+        return len(self.posts)
+
     @property
     def path(self):
         return 'index' + self.EXTENSION
@@ -38,19 +41,20 @@ class TagIndex(Index):
 
 
 def make_tag_indices(config, posts, jinja_env):
-    # TODO: test
-    all_indexes = []
-    grouped_by_tag = defaultdict(list)
+    grouped = _group_posts_by_tag(posts)
+    return [
+        TagIndex(
+            config=config,
+            posts=posts,
+            jinja_env=jinja_env,
+            title=tag,
+        ) for tag, posts in grouped.items()
+    ]
+
+
+def _group_posts_by_tag(posts):
+    grouped = defaultdict(list)
     for post in posts:
         for tag in post.tags:
-            grouped_by_tag[tag].append(post)
-    for tag, posts in grouped_by_tag.items():
-        all_indexes.append(
-            TagIndex(
-                config=config,
-                posts=posts,
-                jinja_env=jinja_env,
-                title=tag,
-            )
-        )
-    return all_indexes
+            grouped[tag].append(post)
+    return grouped

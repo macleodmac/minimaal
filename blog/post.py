@@ -1,6 +1,5 @@
 import datetime
 import os
-import re
 
 import markdown2
 
@@ -14,7 +13,6 @@ class Post(RenderFileMixin):
     TEMPLATE_NAME = 'post.html'
     EXTENSION = '.html'
     EXCERPT_LENGTH = 140
-    # AVG_WPM = 200
 
     def __init__(self, config, content, metadata, jinja_env):
         self.config = config
@@ -79,8 +77,3 @@ class Post(RenderFileMixin):
             self.config.get('base_url'),
             self.path,
         )
-
-    @cached_property
-    def word_count(self):
-        # TODO: test
-        return len(self.content.split())
