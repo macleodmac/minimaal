@@ -44,6 +44,9 @@ css_paths = download_css_paths(
     paths=config.get('css', []),
     destination=css_path,
 )
+css_paths = [os.path.relpath(path, PATHS['output']) for path in css_paths]
+css_paths = ['/' + os.path.join(config.get('base_url'), path) for path in css_paths]
+
 env.globals['css'] = css_paths
 env.globals['site_title'] = config['site_title']
 env.globals['site_description'] = config['site_description']
@@ -87,10 +90,9 @@ tag_indices = make_tag_indices(
 )
 
 for index in tag_indices:
-    os.makedirs(index.directory, exist_ok=True)
-    with open(index.path, 'w', encoding='utf-8') as output:
+    output_dir = os.path.join(PATHS['output'], index.directory)
+    os.makedirs(output_dir, exist_ok=True)
+    output_path = os.path.join(PATHS['output'], index.path)
+    with open(output_path, 'w', encoding='utf-8') as output:
         log.info("Writing index to %s", index.path)
         index.render(output)
-
-if __name__ == '__main__':
-    pass
