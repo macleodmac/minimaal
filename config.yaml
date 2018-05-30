@@ -3,7 +3,7 @@ site_title: minimaal
 site_description: a lightweight, minimal static blog generator written in python using markdown and jinja2
 posts_directory: posts
 template_directory: template
-output_directory: minimaal
+output_directory: docs
 date_format: '%d/%m/%Y'
 posts_per_page: 10
 social_links:
