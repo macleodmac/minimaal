@@ -36,7 +36,7 @@ class TestConfig(TestCase):
         base_config = {'foo': 'base_foo', 'bar': 'base_bar'}
         user_config = {'foo': 'user_foo', 'baz': 'user_baz'}
 
-        actual = build_config(user_config, base_config)
+        actual = build_config(user_config=user_config, base_config=base_config)
 
         expected = {
             'foo': 'user_foo',

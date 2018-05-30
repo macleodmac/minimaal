@@ -6,7 +6,7 @@ from pprint import pprint
 import jinja2
 
 from lib.load import get_paths_with_ext
-from lib.config import load_config_file, download_css_paths, build_config, get_logger
+from lib.config import load_config_file, get_css_paths, build_config, build_config_paths, get_logger
 from lib.parse import read_and_split
 
 from blog.post import Post
@@ -22,30 +22,22 @@ config_path = os.path.join(base_dir, 'config.yaml')
 with open(config_path, encoding='utf-8') as config_file:
     user_config = load_config_file(config_file)
 config = build_config(user_config)
+config = build_config_paths(config, base_dir)
+paths = config['paths']
 
 pprint(config)
 
-PATHS = {
-    'output': os.path.join(base_dir, config['output_directory']),
-    'posts': os.path.join(base_dir, config['posts_directory']),
-    'template': os.path.join(base_dir, config['template_directory']),
-}
+env = jinja2.Environment(loader=jinja2.FileSystemLoader(paths['template']))
 
-
-paths = get_paths_with_ext(PATHS['posts'], config['md_ext'])
-
-env = jinja2.Environment(loader=jinja2.FileSystemLoader(PATHS['template']))
-
-static_path = os.path.join(PATHS['output'], 'static')
+static_path = os.path.join(paths['output'], 'static')
 
 css_path = os.path.join(static_path, 'css')
 os.makedirs(css_path, exist_ok=True)
-css_paths = download_css_paths(
-    paths=config.get('css', []),
+css_paths = get_css_paths(
+    config=config,
     destination=css_path,
 )
-css_paths = [os.path.relpath(path, PATHS['output']) for path in css_paths]
-css_paths = ['/' + os.path.join(config.get('base_url'), path) for path in css_paths]
+
 
 env.globals.update({
     'css': css_paths,
@@ -54,8 +46,10 @@ env.globals.update({
     'base_url': '/' + config['base_url'].lstrip('/'),
 })
 
+post_paths = get_paths_with_ext(paths['posts'], config['md_ext'])
+
 all_posts = []
-for path in paths:
+for path in post_paths:
     metadata, content = read_and_split(path)
     post = Post(
         config=config,
@@ -67,7 +61,7 @@ for path in paths:
 
 for post in all_posts:
     directory, file_name = os.path.split(post.path)
-    post_output_dir = os.path.join(PATHS['output'], directory)
+    post_output_dir = os.path.join(paths['output'], directory)
     post_output_path = os.path.join(post_output_dir, file_name)
     os.makedirs(post_output_dir, exist_ok=True)
     with open(post_output_path, 'w', encoding='utf-8') as output:
@@ -81,7 +75,7 @@ index = Index(
     jinja_env=env,
     title='Home'
 )
-index_path = os.path.join(PATHS['output'], 'index.html')
+index_path = os.path.join(paths['output'], 'index.html')
 with open(index_path, 'w', encoding='utf-8') as output:
     log.info("Writing index to %s", index_path)
     output.writelines(index.html)
@@ -93,9 +87,9 @@ tag_indices = make_tag_indices(
 )
 
 for index in tag_indices:
-    output_dir = os.path.join(PATHS['output'], index.directory)
+    output_dir = os.path.join(paths['output'], index.directory)
     os.makedirs(output_dir, exist_ok=True)
-    output_path = os.path.join(PATHS['output'], index.path)
+    output_path = os.path.join(paths['output'], index.path)
     with open(output_path, 'w', encoding='utf-8') as output:
         log.info("Writing index to %s", index.path)
         index.render(output)
