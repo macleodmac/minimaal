@@ -45,10 +45,8 @@ class Post(RenderFileMixin):
         }
         content = markdown2.markdown(self.content, extras=extras)
         return self.template.render(
-            title=self.title,
             content=content,
-            tags=self.tags,
-            date=self.pretty_date,
+            post=self,
         )
 
     @cached_property

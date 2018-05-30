@@ -6,8 +6,46 @@ body {
     min-height: 100%;
 }
 
+article.index-article {
+    padding: 2.2rem 0;
+}
+
+.row {
+    margin-bottom: -1.0rem;
+}
+
+h1, h2, h3, h4, h5 {
+    color: black;
+}
+h1.post-title {
+    font-size: 4.0rem;
+}
+
+.content h1 {
+    font-size: 3.5rem;
+}
+
+.content h2 {
+    font-size: 3.0rem;
+}
+
+.header-right {
+    text-align: right;
+}
+
+.excerpt {
+    font-size: 2.7rem;
+    margin-bottom: 2.0rem;
+}
+
 blockquote {
     border-left: 0.3rem solid #FF7400;
+}
+
+p.date {
+    margin-bottom: 0;
+    text-transform: uppercase;
+    font-size: 1.35rem;
 }
 
 blockquote.site-description {
@@ -32,6 +70,7 @@ a:hover {
     line-height: 2.5rem;
     height: 2.7rem;
     padding: 0 1.0rem;
+    font-weight: 300;
 }
 
 body {

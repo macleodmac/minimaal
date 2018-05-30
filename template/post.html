@@ -1,14 +1,23 @@
 {% extends "base.html" %}
 {% block title %}{{ title }}{% endblock %}
 {% block body %}
-
-<h1 class="post-title">{{ title }}</h1>
-<p class="post-date">{{ date.upper() }}</p>
-
-{{ content }}
-
-
-{% for tag in tags %}
-<a class="button button-outline" href="#">{{ tag }}</a>
-{% endfor %}
+<article>
+    <header>
+        <div class="meta">
+            <p class="date">
+                {{ post.pretty_date }}
+            </p>
+        </div>
+    </header>
+    <h1 class="post-title">{{ post.title }}</h1>
+    <div class="excerpt">
+        {{ post.excerpt }}
+    </div>
+    <div class="content">
+        {{ content }}
+    </div>
+    {% for tag in post.tags %}
+    <a class="button button-outline" href="#">{{ tag }}</a>
+    {% endfor %}
+</article>
 {% endblock %}

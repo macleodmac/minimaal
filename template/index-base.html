@@ -4,11 +4,19 @@
     {% block site_description %}{% endblock %}
     {% block index_title %}{% endblock %}
     {% for post in posts %}
-        <h3><a href="{{ post.url }}" class="post-title">{{ post.title }}</a></h3>
-        <h5>{{ post.pretty_date.upper() }}</h5>
+        <article class="index-article">
+            <header>
+                <div class="meta">
+                <p class="date">
+                    {{ post.pretty_date }}
+                </p>
+            </div>
+            </header>
+        <h2><a href="{{ post.url }}" class="post-title">{{ post.title }}</a></h2>
         <p>{{ post.excerpt }}</p>
         {% for tag in post.tags %}
             <a class="button button-outline" href="#">{{ tag }}</a>
         {% endfor %}
+        </article>
     {% endfor %}
 {% endblock %}
