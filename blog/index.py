@@ -10,6 +10,7 @@ class Index(RenderFileMixin):
     EXTENSION = '.html'
 
     def __init__(self, config, posts, jinja_env, title):
+        # TODO: add super call
         self.config = config
         self.posts = posts
         self.template = jinja_env.get_template(self.TEMPLATE_NAME)

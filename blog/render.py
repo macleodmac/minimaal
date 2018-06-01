@@ -12,6 +12,11 @@ class RenderFileMixin(object):
         return os.path.dirname(self.path)
 
     @property
+    def file_name(self):
+        _, file_name = os.path.split(self.path)
+        return file_name
+
+    @property
     def html(self):
         raise NotImplementedError
 

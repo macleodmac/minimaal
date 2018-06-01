@@ -15,6 +15,7 @@ class Post(RenderFileMixin):
     EXCERPT_LENGTH = 140
 
     def __init__(self, config, content, metadata, jinja_env):
+        # TODO: add super call
         self.config = config
         self.content = content
         self.metadata = metadata

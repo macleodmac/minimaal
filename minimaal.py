@@ -14,82 +14,94 @@ from blog.index import Index, make_tag_indices
 
 log = get_logger()
 
-parser = argparse.ArgumentParser(description='Load some config file for minimaal')
 
-base_dir = os.getcwd()
-config_path = os.path.join(base_dir, 'config.yaml')
-
-with open(config_path, encoding='utf-8') as config_file:
-    user_config = load_config_file(config_file)
-config = build_config(user_config)
-config = build_config_paths(config, base_dir)
-paths = config['paths']
-
-pprint(config)
-
-env = jinja2.Environment(loader=jinja2.FileSystemLoader(paths['template']))
-
-static_path = os.path.join(paths['output'], 'static')
-
-css_path = os.path.join(static_path, 'css')
-os.makedirs(css_path, exist_ok=True)
-css_paths = get_css_paths(
-    config=config,
-    destination=css_path,
-)
+def build_posts(config, post_paths, jinja_env):
+    all_posts = []
+    for path in post_paths:
+        metadata, content = read_and_split(path)
+        post = Post(
+            config=config,
+            content=content,
+            metadata=metadata,
+            jinja_env=jinja_env,
+        )
+        all_posts.append(post)
+    return all_posts
 
 
-env.globals.update({
-    'css': css_paths,
-    'site_title': config['site_title'],
-    'site_description': config['site_description'],
-    'base_url': '/' + config['base_url'].lstrip('/'),
-})
-
-post_paths = get_paths_with_ext(paths['posts'], config['md_ext'])
-
-all_posts = []
-for path in post_paths:
-    metadata, content = read_and_split(path)
-    post = Post(
+def build_index(config, posts, jinja_env):
+    index = Index(
         config=config,
-        content=content,
-        metadata=metadata,
-        jinja_env=env,
+        posts=posts,
+        jinja_env=jinja_env,
+        title='Home',
     )
-    all_posts.append(post)
+    return index
 
-for post in all_posts:
-    directory, file_name = os.path.split(post.path)
-    post_output_dir = os.path.join(paths['output'], directory)
-    post_output_path = os.path.join(post_output_dir, file_name)
-    os.makedirs(post_output_dir, exist_ok=True)
-    with open(post_output_path, 'w', encoding='utf-8') as output:
-        log.info("Writing post %s to %s", post.title, post_output_path)
-        post.render(output)
-        print(post.excerpt)
 
-index = Index(
-    config=config,
-    posts=all_posts,
-    jinja_env=env,
-    title='Home'
-)
-index_path = os.path.join(paths['output'], 'index.html')
-with open(index_path, 'w', encoding='utf-8') as output:
-    log.info("Writing index to %s", index_path)
-    output.writelines(index.html)
+def build_tag_indices(config, posts, jinja_env):
+    tag_indices = make_tag_indices(
+        config=config,
+        posts=posts,
+        jinja_env=jinja_env,
+    )
+    return tag_indices
 
-tag_indices = make_tag_indices(
-    config=config,
-    posts=all_posts,
-    jinja_env=env,
-)
 
-for index in tag_indices:
-    output_dir = os.path.join(paths['output'], index.directory)
-    os.makedirs(output_dir, exist_ok=True)
-    output_path = os.path.join(paths['output'], index.path)
-    with open(output_path, 'w', encoding='utf-8') as output:
-        log.info("Writing index to %s", index.path)
-        index.render(output)
+def render(config, items):
+    for item in items:
+        output_dir = os.path.join(config['paths']['output'], item.directory)
+        os.makedirs(output_dir, exist_ok=True)
+        output_path = os.path.join(output_path, item.path)
+        with open(output_path, 'w', encoding='utf-8') as output:
+            log.info("Writing file to %s", item.path)
+            item.render(output)
+
+
+def make_config():
+    # parser = argparse.ArgumentParser(description='Load some config file for minimaal')
+
+    base_path = os.getcwd()
+    config_path = os.path.join(base_path, 'config.yaml')
+
+    with open(config_path, encoding='utf-8') as config_file:
+        user_config = load_config_file(config_file)
+
+    config = build_config(user_config)
+    config = build_config_paths(config, base_path)
+
+    pprint(config)
+
+    return config
+
+
+def make_jinja_env(config):
+    env = jinja2.Environment(loader=jinja2.FileSystemLoader(config['paths']['template']))
+    css_output_dir = os.path.join(config['paths']['output'], 'static', 'css')
+    os.makedirs(css_output_dir, exist_ok=True)
+    css = get_css_paths(
+        config=config,
+        destination=css_output_dir,
+    )
+    env.globals.update({
+        'css': css,
+        'config': config,
+    })
+    return env
+
+
+def run():
+    config = make_config()
+    jinja_env = make_jinja_env(config)
+    post_paths = get_paths_with_ext(
+        root=config['paths']['posts'],
+        ext=config['md_ext'],
+    )
+    posts = build_posts(config, post_paths, jinja_env)
+    index = build_index(config, posts, jinja_env)
+    tag_indices = build_tag_indices(config, posts, jinja_env)
+    all_items = posts + tag_indices + [index]
+    render(config=config, items=all_items)
+
+
+run()
