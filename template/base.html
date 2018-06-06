@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{% if title -%}{{ title + ' - '}}{% endif -%}{{ config.site_title }}</title>
-    {% for item in config.css %}
+    {% for item in css %}
     <link rel="stylesheet" href="{{ item }}" />
     {% endfor %}
 </head>

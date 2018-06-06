@@ -83,6 +83,7 @@ def make_jinja_env(config):
         config=config,
         destination=css_output_dir,
     )
+    print(css)
     env.globals.update({
         'css': css,
         'config': config,

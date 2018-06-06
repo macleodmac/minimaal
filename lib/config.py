@@ -68,8 +68,7 @@ def get_css_paths(config, destination):
         _, file_name = os.path.split(path)
         local_path = os.path.join(destination, file_name)
         urllib.request.urlretrieve(path, local_path)
-        relative_path = os.path.join(config.get('base_url'))
-        all_paths.append(local_path)
-    all_paths = [os.path.relpath(path, config['paths']['output']) for path in all_paths]
-    all_paths = ['/' + os.path.join(config.get('base_url'), path) for path in all_paths]
+        rel_path = os.path.relpath(destination, config['paths']['output'])
+        relative_path = os.path.join(config.get('base_url'), rel_path, file_name)
+        all_paths.append(relative_path)
     return all_paths
