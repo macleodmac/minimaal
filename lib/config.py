@@ -1,10 +1,10 @@
 import logging
 import os
-import re
 import urllib.request
 
 import yaml
 
+from lib.parse import make_url_friendly
 
 CSS_EXT = '.css'
 
@@ -66,9 +66,11 @@ def get_css_paths(config, destination):
     all_paths = []
     for path in config.get('css', []):
         _, file_name = os.path.split(path)
+        name, ext = os.path.splitext(file_name)
         local_path = os.path.join(destination, file_name)
         urllib.request.urlretrieve(path, local_path)
         rel_path = os.path.relpath(destination, config['paths']['output'])
-        relative_path = os.path.join(config.get('base_url'), rel_path, file_name)
+        cleaned_file_name = make_url_friendly(name) + ext
+        relative_path = os.path.join(config.get('base_url'), rel_path, cleaned_file_name)
         all_paths.append(relative_path)
     return all_paths
