@@ -52,7 +52,7 @@ def render(config, items):
     for item in items:
         output_dir = os.path.join(config['paths']['output'], item.directory)
         os.makedirs(output_dir, exist_ok=True)
-        output_path = os.path.join(output_path, item.path)
+        output_path = os.path.join(config['paths']['output'], item.path)
         with open(output_path, 'w', encoding='utf-8') as output:
             log.info("Writing file to %s", item.path)
             item.render(output)
