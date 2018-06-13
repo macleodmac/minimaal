@@ -29,6 +29,10 @@ h1.post-title {
     font-size: 4.0rem;
 }
 
+h4 {
+    margin-bottom: 0.8rem;
+}
+
 .content h1 {
     font-size: 3.5rem;
 }
