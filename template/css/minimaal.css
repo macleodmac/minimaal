@@ -10,6 +10,14 @@ article.index-article {
     padding: 2.2rem 0;
 }
 
+.excerpt, p, li {
+    text-align: justify;
+}
+
+ol, ul, li {
+    list-style-position: outside;
+}
+
 .row {
     margin-bottom: -1.0rem;
 }
