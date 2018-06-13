@@ -14,10 +14,15 @@ META_DELIMITER = ':'
 
 def read_and_split(file_path):
     with open(file_path, encoding='utf-8') as f:
-        contents = f.read()
-    meta_text, body_text = split_markdown(contents)
+        contents = f.read().splitlines()
+    # TODO cleanup
+    for i, line in enumerate(contents):
+        if line.strip() == '':
+            break
+    meta_text, body_text = contents[:i], contents[i:]
+    meta_text = '\n'.join(meta_text)
     meta_dict = parse_metadata(meta_text)
-    return meta_dict, body_text
+    return meta_dict, '\n'.join(body_text)
 
 
 def split_markdown(text, meta_pattern=META_PATTERN):
