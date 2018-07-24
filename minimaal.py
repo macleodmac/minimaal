@@ -77,14 +77,12 @@ def make_config():
 
 def make_jinja_env(config):
     env = jinja2.Environment(loader=jinja2.FileSystemLoader(config['paths']['template']))
-    # css_output_dir = os.path.join(config['paths']['output'], 'static', 'css')
-    # os.makedirs(css_output_dir, exist_ok=True)
-    # css = get_css_paths(
-    #     config=config,
-    #     destination=css_output_dir,
-    # )
-    # print
-    css = []
+    css_output_dir = os.path.join(config['paths']['output'], 'static', 'css')
+    os.makedirs(css_output_dir, exist_ok=True)
+    css = get_css_paths(
+        config=config,
+        destination=css_output_dir,
+    )
     env.globals.update({
         'css': css,
         'config': config,
