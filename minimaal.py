@@ -5,10 +5,9 @@ from pprint import pprint
 
 import jinja2
 
+from lib import load, parse
 from lib.load import get_paths_with_ext
 from lib.config import load_config_file, get_css_paths, build_config, build_config_paths, get_logger
-from lib.parse import read_and_split
-
 from blog.post import Post
 from blog.index import Index, make_tag_indices
 
@@ -18,7 +17,8 @@ log = get_logger()
 def build_posts(config, post_paths, jinja_env):
     all_posts = []
     for path in post_paths:
-        metadata, content = read_and_split(path)
+        text = load.read_path_contents(path)
+        metadata, content = parse.split_meta_and_content(text)
         post = Post(
             config=config,
             content=content,
@@ -77,13 +77,14 @@ def make_config():
 
 def make_jinja_env(config):
     env = jinja2.Environment(loader=jinja2.FileSystemLoader(config['paths']['template']))
-    css_output_dir = os.path.join(config['paths']['output'], 'static', 'css')
-    os.makedirs(css_output_dir, exist_ok=True)
-    css = get_css_paths(
-        config=config,
-        destination=css_output_dir,
-    )
-    print(css)
+    # css_output_dir = os.path.join(config['paths']['output'], 'static', 'css')
+    # os.makedirs(css_output_dir, exist_ok=True)
+    # css = get_css_paths(
+    #     config=config,
+    #     destination=css_output_dir,
+    # )
+    # print
+    css = []
     env.globals.update({
         'css': css,
         'config': config,

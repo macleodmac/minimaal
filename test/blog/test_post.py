@@ -85,5 +85,5 @@ class TestPost(TestCase):
         self.post.config.update({
             'base_url': 'basetest',
         })
-        expected = '/basetest/2018/05/test-post-make-sure-youre-into-markdown.html'
+        expected = 'basetest/2018/05/test-post-make-sure-youre-into-markdown.html'
         self.assertEqual(self.post.url, expected)

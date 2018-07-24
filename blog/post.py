@@ -4,7 +4,7 @@ import os
 import markdown2
 
 from lib.decorators import cached_property
-from lib.parse import make_url_friendly
+from lib.parse import make_string_url_friendly
 from blog.render import RenderFileMixin
 
 
@@ -52,7 +52,7 @@ class Post(RenderFileMixin):
 
     @cached_property
     def path(self):
-        title = make_url_friendly(self.title)
+        title = make_string_url_friendly(self.title)
         return os.path.join(
             str(self.date.year),
             str(self.date.month).zfill(2),

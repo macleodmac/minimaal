@@ -4,7 +4,7 @@ import urllib.request
 
 import yaml
 
-from lib.parse import make_url_friendly
+from lib.parse import make_string_url_friendly
 
 CSS_EXT = '.css'
 
@@ -68,7 +68,7 @@ def get_css_paths(config, destination):
         _, file_name = os.path.split(path)
         name, ext = os.path.splitext(file_name)
         ext = ext if ext else '.css'
-        cleaned_file_name = make_url_friendly(name) + ext
+        cleaned_file_name = make_string_url_friendly(name) + ext
         local_path = os.path.join(destination, cleaned_file_name)
         urllib.request.urlretrieve(path, local_path)
         rel_path = os.path.relpath(destination, config['paths']['output'])

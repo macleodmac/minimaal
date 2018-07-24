@@ -1,5 +1,11 @@
 import os
 
+# TODO test
+def read_path_contents(path):
+    with open(path, encoding='utf-8') as f:
+        text = f.read()
+    return text
+
 
 def get_paths_with_ext(root, ext='.md'):
     all_paths = []
