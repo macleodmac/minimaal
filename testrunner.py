@@ -1,3 +1,3 @@
-import nose
+import pytest
 
-nose.main()
+pytest.main()
