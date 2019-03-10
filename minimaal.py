@@ -90,7 +90,7 @@ def make_jinja_env(config):
     return env
 
 
-def run():
+def main():
     config = make_config()
     jinja_env = make_jinja_env(config)
     post_paths = get_paths_with_ext(
@@ -104,4 +104,5 @@ def run():
     render(config=config, items=all_items)
 
 
-run()
+if __name__ == "__main__":
+    main()
