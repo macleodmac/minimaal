@@ -73,6 +73,6 @@ class Post(RenderFileMixin):
     @property
     def url(self):
         return os.path.join(
-            self.config.get('base_url'),
+            self.config.get('base_path'),
             self.path,
         )

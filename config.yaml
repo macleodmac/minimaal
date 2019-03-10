@@ -1,4 +1,4 @@
-base_url: minimaal
+base_path: minimaal
 site_title: minimaal
 site_description: a lightweight, minimal static blog generator written in python using markdown and jinja2
 directories:

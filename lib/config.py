@@ -9,7 +9,7 @@ from lib.parse import make_string_url_friendly
 CSS_EXT = '.css'
 
 BASE_CONFIG = {
-    'base_url': 'http://www.test-blog.com',
+    'base_path': 'http://www.test-blog.com',
     'posts_per_page': 10,
     'site_description': 'This is a site generated using minimaal',
     'md_ext': '.md',
@@ -25,7 +25,7 @@ BASE_CONFIG = {
         'https://cdn.rawgit.com/necolas/normalize.css/master/normalize.css',
         'https://cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css',
     ],
-    'base_path': os.getcwd(),
+    'base_dir': os.getcwd(),
 }
 
 
@@ -39,8 +39,8 @@ def build_config(user_config, base_config=BASE_CONFIG):
 
 
 def _normalise_config(config):
-    if config.get('base_url'):
-        config['base_url'] = '/' + config['base_url'].lstrip('/')
+    if config.get('base_path'):
+        config['base_path'] = '/' + config['base_path'].lstrip('/')
     return config
 
 
@@ -72,6 +72,6 @@ def get_css_paths(config, destination):
         local_path = os.path.join(destination, cleaned_file_name)
         urllib.request.urlretrieve(path, local_path)
         rel_path = os.path.relpath(destination, config['paths']['output'])
-        relative_path = os.path.join(config.get('base_url'), rel_path, cleaned_file_name)
+        relative_path = os.path.join(config.get('base_path'), rel_path, cleaned_file_name)
         all_paths.append(relative_path)
     return all_paths
