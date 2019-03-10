@@ -4,12 +4,12 @@ import urllib.request
 
 import yaml
 
-from lib.parse import make_string_url_friendly
+from minimaal.parse import make_string_url_friendly
 
 CSS_EXT = '.css'
 
 BASE_CONFIG = {
-    'base_path': 'http://www.test-blog.com',
+    'base_path': 'http://www.test-model.com',
     'posts_per_page': 10,
     'site_description': 'This is a site generated using minimaal',
     'md_ext': '.md',

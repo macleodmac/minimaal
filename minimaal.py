@@ -1,15 +1,13 @@
-import argparse
-
 import os
 from pprint import pprint
 
 import jinja2
 
-from lib import load, parse
-from lib.load import get_paths_with_ext
-from lib.config import load_config_file, get_css_paths, build_config, build_config_paths, get_logger
-from blog.post import Post
-from blog.index import Index, make_tag_indices
+from minimaal import load, parse
+from minimaal.load import get_paths_with_ext
+from minimaal.config import load_config_file, get_css_paths, build_config, build_config_paths, get_logger
+from minimaal.model.post import Post
+from minimaal.model.index import Index, make_tag_indices
 
 log = get_logger()
 

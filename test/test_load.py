@@ -1,8 +1,7 @@
 from unittest.mock import patch
-from io import StringIO
 from unittest import TestCase
 
-from lib.load import get_paths_with_ext
+from minimaal.load import get_paths_with_ext
 
 
 class TestLoad(TestCase):

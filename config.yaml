@@ -1,9 +1,9 @@
 base_path: minimaal
 site_title: minimaal
-site_description: a lightweight, minimal static blog generator written in python using markdown and jinja2
+site_description: a lightweight, minimal static model generator written in python using markdown and jinja2
 directories:
-  posts: posts
-  template: template
+  posts: input/posts
+  template: input/template
   output: docs
 date_format: '%d/%m/%Y'
 posts_per_page: 10
@@ -11,4 +11,4 @@ css:
   - https://fonts.googleapis.com/css?family=Open+Sans:300
   - https://cdn.rawgit.com/necolas/normalize.css/master/normalize.css
   - https://cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css
-  - file:///home/jamie/Desktop/workspace/projects/minimaal/template/css/minimaal.css
+  - file:///home/jamie/Desktop/workspace/projects/minimaal/input/template/css/minimaal.css

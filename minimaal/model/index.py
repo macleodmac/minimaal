@@ -1,7 +1,7 @@
 from collections import defaultdict
 import os
-from lib.parse import make_string_url_friendly
-from blog.render import RenderFileMixin
+from minimaal.parse import make_string_url_friendly
+from minimaal.model.render import RenderFileMixin
 
 
 class Index(RenderFileMixin):

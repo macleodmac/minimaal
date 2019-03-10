@@ -3,9 +3,9 @@ import os
 
 import markdown2
 
-from lib.decorators import cached_property
-from lib.parse import make_string_url_friendly
-from blog.render import RenderFileMixin
+from minimaal.decorators import cached_property
+from minimaal.parse import make_string_url_friendly
+from minimaal.model.render import RenderFileMixin
 
 
 class Post(RenderFileMixin):

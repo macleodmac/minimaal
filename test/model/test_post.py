@@ -1,7 +1,7 @@
 import datetime
 from unittest import TestCase
 from unittest.mock import Mock
-from blog.post import Post
+from minimaal.model.post import Post
 
 
 class TestPost(TestCase):

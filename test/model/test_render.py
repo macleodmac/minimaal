@@ -1,6 +1,6 @@
 import io
 from unittest import TestCase
-from blog.render import RenderFileMixin
+from minimaal.model.render import RenderFileMixin
 
 
 class TestRender(TestCase):

@@ -1,7 +1,7 @@
 from io import StringIO
 from unittest import TestCase
 
-from lib.config import load_config_file, build_config
+from minimaal.config import load_config_file, build_config
 
 
 class TestConfig(TestCase):

@@ -1,6 +1,6 @@
 from unittest import TestCase
 from unittest.mock import Mock
-from lib.decorators import cached_property
+from minimaal.decorators import cached_property
 
 
 class TestDecorators(TestCase):

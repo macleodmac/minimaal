@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from lib.parse import split_meta_and_content, parse_metadata, make_string_url_friendly
+from minimaal.parse import split_meta_and_content, parse_metadata, make_string_url_friendly
 
 
 class TestParse(TestCase):

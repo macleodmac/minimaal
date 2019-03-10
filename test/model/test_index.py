@@ -1,6 +1,6 @@
 from unittest.mock import Mock
-from blog.index import Index, TagIndex, make_tag_indices
-from blog.post import Post
+from minimaal.model.index import Index, TagIndex, make_tag_indices
+from minimaal.model.post import Post
 
 
 def _post_with_tags(tags):
